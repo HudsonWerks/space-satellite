@@ -9,7 +9,7 @@ import urllib2
 import json
 
 def getiss():
-    #call opennotify api
+    #Call opennotify api which serves up ISS tracking and ship-related information
     response = urllib2.urlopen('http://api.open-notify.org/iss-now.json')
     mydata = response.read()
     return(mydata)
@@ -20,16 +20,16 @@ while True:
     lat = pos['iss_position']['latitude']
     lon = pos['iss_position']['longitude']
 
-    # miller projection
+    # Miller projection map that will visualize the ISS position
     map = Basemap(projection='mill',lon_0=0)
     # plot coastlines, draw label meridians and parallels.
     map.drawcoastlines()
     map.drawparallels(np.arange(-90,90,30),labels=[1,0,0,0])
     map.drawmeridians(np.arange(map.lonmin,map.lonmax+30,60),labels=[0,0,0,1])
-    # fill continents 'coral' (with zorder=0), color wet areas 'aqua'
+    # Color values in the map can be modified here. Fill continents 'coral' (with zorder=0), color wet areas 'aqua'
     map.drawmapboundary(fill_color='aqua')
     map.fillcontinents(color='coral',lake_color='aqua')
-    # shade the night areas, with alpha transparency so the
+    # Shade the night areas, with alpha transparency so the
     # map shows through. Use current time in UTC.
     date = datetime.now()
     CS=map.nightshade(date)
