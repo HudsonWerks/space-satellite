@@ -1,11 +1,12 @@
 #!/usr/bin/env python
+# Code adapted from Linux Voice, Issue 6, http://bit.ly/1J84HMk.
 
 import urllib, json, threading, math
 # open source API for tracking the ISS
 url= 'https://api.wheretheiss.at/v1/satellites/25544'
 #Input your local GPS coordinates here in order to get an accurate distance
-home_lat = 40.7295733
-home_long = -74.00466599
+home_lat = HOME_LATITUDE
+home_long = HOME_LONGITUDE
 def work(home_lat, home_long):
         response = urllib.urlopen(url)
         data = json.loads(response.read())
