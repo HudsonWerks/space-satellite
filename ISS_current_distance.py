@@ -32,3 +32,4 @@ def sph_dist(lat1, long1, lat2, long2):
         arc = math.acos( cos )
         return arc * 3960
 work (home_lat, home_long)
+
